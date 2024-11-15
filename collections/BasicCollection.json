@@ -1,1 +1,41 @@
-{"collection":{"info":{"_postman_id":"abdf1743-bb67-4acd-a85a-c7deac122cf3","name":"BasicCollection","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json","updatedAt":"2024-11-15T13:22:15.000Z","createdAt":"2024-11-15T13:22:06.000Z","lastUpdatedBy":"37340056","uid":"37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3"},"item":[]}}
+{
+  "collection": {
+    "info": {
+      "_postman_id": "abdf1743-bb67-4acd-a85a-c7deac122cf3",
+      "name": "BasicCollection",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "updatedAt": "2024-11-15T13:59:04.000Z",
+      "createdAt": "2024-11-15T13:22:06.000Z",
+      "lastUpdatedBy": "37340056",
+      "uid": "37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3"
+    },
+    "item": [
+      {
+        "name": "New Request",
+        "id": "0613a5b1-99b6-47fe-bcee-2309f0c33905",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "https://jsonplaceholder.typicode.com/todos/1",
+            "protocol": "https",
+            "host": [
+              "jsonplaceholder",
+              "typicode",
+              "com"
+            ],
+            "path": [
+              "todos",
+              "1"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "37340056-0613a5b1-99b6-47fe-bcee-2309f0c33905"
+      }
+    ]
+  }
+}
