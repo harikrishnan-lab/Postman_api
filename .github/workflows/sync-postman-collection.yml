@@ -14,20 +14,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Create collections folder (if it doesn’t exist)
         run: mkdir -p collections
-      - name: Fetch Postman Collection from Postman API
+
+      - name: Fetch and Format Postman Collection from Postman API
         run: |
           curl -X GET -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
-            -o collections/BasicCollection.json \
-            https://api.getpostman.com/collections/37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3
-            
+            https://api.getpostman.com/collections/37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3 \
+            | jq '.' > collections/BasicCollection.json  # Pretty-print JSON
+
       - name: Install Newman
         run: npm install -g newman
 
       - name: Run Postman Collection
         run: newman run collections/BasicCollection.json
-        
+
       - name: Commit and Push Updated Collection
         run: |
           git config --global user.name "github-actions"
