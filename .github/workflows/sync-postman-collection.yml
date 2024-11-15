@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+      - name: Create collections folder (if it doesn’t exist)
+        run: mkdir -p collections
       - name: Fetch Postman Collection from Postman API
         run: |
           curl -X GET -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
