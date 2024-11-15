@@ -1,0 +1,36 @@
+name: Sync Postman Collection to GitHub
+
+on:
+  push:
+    branches:
+      - main  # This can be changed to any branch you use
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour (change based on your needs)
+
+jobs:
+  sync-collection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch Postman Collection from Postman API
+        run: |
+          curl -X GET -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+            -o collections/BasicCollection.json \
+            https://api.getpostman.com/collections/37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3
+            
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman Collection
+        run: newman run collections/BasicCollection.json
+        
+      - name: Commit and Push Updated Collection
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add collections/BasicCollection.json
+          git commit -m "Sync updated Postman collection"
+          git push origin main
