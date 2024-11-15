@@ -4,7 +4,7 @@
       "_postman_id": "abdf1743-bb67-4acd-a85a-c7deac122cf3",
       "name": "BasicCollection",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-      "updatedAt": "2024-11-15T13:59:04.000Z",
+      "updatedAt": "2024-11-15T16:18:32.000Z",
       "createdAt": "2024-11-15T13:22:06.000Z",
       "lastUpdatedBy": "37340056",
       "uid": "37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3"
@@ -12,7 +12,50 @@
     "item": [
       {
         "name": "New Request",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5cdda046-ae85-4b06-8d61-ddc91aad7314",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {\r",
+                "    pm.response.to.have.status(200);\r",
+                "});\r",
+                "pm.test(\"Response time is less than 200ms\", function () {\r",
+                "    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+                "});"
+              ],
+              "type": "text/javascript",
+              "packages": {}
+            }
+          }
+        ],
         "id": "0613a5b1-99b6-47fe-bcee-2309f0c33905",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "https://api.restful-api.dev/objects",
+            "protocol": "https",
+            "host": [
+              "api",
+              "restful-api",
+              "dev"
+            ],
+            "path": [
+              "objects"
+            ]
+          }
+        },
+        "response": [],
+        "uid": "37340056-0613a5b1-99b6-47fe-bcee-2309f0c33905"
+      },
+      {
+        "name": "New Request",
+        "id": "ad4ac5e6-6298-4fbc-bbab-fd636c2c8581",
         "protocolProfileBehavior": {
           "disableBodyPruning": true
         },
@@ -34,7 +77,7 @@
           }
         },
         "response": [],
-        "uid": "37340056-0613a5b1-99b6-47fe-bcee-2309f0c33905"
+        "uid": "37340056-ad4ac5e6-6298-4fbc-bbab-fd636c2c8581"
       }
     ]
   }
