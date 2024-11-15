@@ -19,7 +19,7 @@ jobs:
       - name: Fetch Postman Collection from Postman API
         run: |
           curl -X GET -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
-            | jq '.' > collections/BasicCollection.json \
+            -o collections/BasicCollection.json \
             https://api.getpostman.com/collections/37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3
             
       - name: Install Newman
