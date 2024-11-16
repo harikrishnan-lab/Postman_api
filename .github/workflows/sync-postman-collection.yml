@@ -30,7 +30,19 @@ jobs:
       - name: Run Postman Collection
         run: newman run collections/BasicCollection.json
 
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Changes detected."
+            echo "has_changes=true" >> $GITHUB_ENV
+          else
+            echo "No changes detected."
+            echo "has_changes=false" >> $GITHUB_ENV
+          fi
+
       - name: Commit and Push Updated Collection
+        if: env.has_changes == 'true'
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
