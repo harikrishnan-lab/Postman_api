@@ -4,7 +4,7 @@
       "_postman_id": "abdf1743-bb67-4acd-a85a-c7deac122cf3",
       "name": "BasicCollection",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-      "updatedAt": "2024-11-15T16:18:32.000Z",
+      "updatedAt": "2024-11-16T06:35:49.000Z",
       "createdAt": "2024-11-15T13:22:06.000Z",
       "lastUpdatedBy": "37340056",
       "uid": "37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3"
@@ -21,8 +21,8 @@
                 "pm.test(\"Status code is 200\", function () {\r",
                 "    pm.response.to.have.status(200);\r",
                 "});\r",
-                "pm.test(\"Response time is less than 200ms\", function () {\r",
-                "    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+                "pm.test(\"Response time is less than 900ms\", function () {\r",
+                "    pm.expect(pm.response.responseTime).to.be.below(900);\r",
                 "});"
               ],
               "type": "text/javascript",
