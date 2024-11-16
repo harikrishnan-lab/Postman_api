@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - main  # This can be changed to any branch you use
-  schedule:
-    - cron: '0 * * * *'  # Runs every hour (change based on your needs)
+#  schedule:
+#    - cron: '0 * * * *'  # Runs every hour (change based on your needs)
 
 jobs:
   sync-collection:
