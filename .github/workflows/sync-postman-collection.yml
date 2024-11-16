@@ -1,6 +1,7 @@
 name: Sync Postman Collection to GitHub
 
 on:
+  workflow_dispatch:  # Enables manual trigger
   push:
     branches:
       - main  # This can be changed to any branch you use
