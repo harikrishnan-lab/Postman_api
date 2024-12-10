@@ -35,7 +35,7 @@ jobs:
         run: npm install -g newman newman-reporter-html
 
       - name: Run Postman Collection
-        run: newman run collection/BasicCollection.json -r html
+        run: newman run collections/BasicCollection.json -r html
       
 
       - name: Check for Changes
