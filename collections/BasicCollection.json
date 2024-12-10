@@ -4,7 +4,7 @@
       "_postman_id": "abdf1743-bb67-4acd-a85a-c7deac122cf3",
       "name": "BasicCollection",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-      "updatedAt": "2024-11-16T06:48:52.000Z",
+      "updatedAt": "2024-12-10T10:02:21.000Z",
       "createdAt": "2024-11-15T13:22:06.000Z",
       "lastUpdatedBy": "37340056",
       "uid": "37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3"
@@ -16,13 +16,10 @@
           {
             "listen": "test",
             "script": {
-              "id": "5cdda046-ae85-4b06-8d61-ddc91aad7314",
+              "id": "9260675f-48f6-40b5-a980-864344ea3167",
               "exec": [
                 "pm.test(\"Status code is 200\", function () {\r",
                 "    pm.response.to.have.status(200);\r",
-                "});\r",
-                "pm.test(\"Response time is less than 900ms\", function () {\r",
-                "    pm.expect(pm.response.responseTime).to.be.below(900);\r",
                 "});"
               ],
               "type": "text/javascript",
@@ -63,9 +60,6 @@
               "exec": [
                 "pm.test(\"Status code is 200\", function () {\r",
                 "    pm.response.to.have.status(200);\r",
-                "});\r",
-                "pm.test(\"Response time is less than 800ms\", function () {\r",
-                "    pm.expect(pm.response.responseTime).to.be.below(800);\r",
                 "});"
               ],
               "type": "text/javascript",
@@ -96,6 +90,61 @@
         },
         "response": [],
         "uid": "37340056-ad4ac5e6-6298-4fbc-bbab-fd636c2c8581"
+      },
+      {
+        "name": "New Request",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "cad336c9-e4e4-4d1a-afab-22f64e1e3fd5",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {\r",
+                "    pm.response.to.have.status(200);\r",
+                "});"
+              ],
+              "type": "text/javascript",
+              "packages": {}
+            }
+          }
+        ],
+        "id": "010cc421-9a38-4ac8-8a41-4ce3f83910e7",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "GET",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "https://rahulshettyacademy.com/Library/GetBook.php?ID=bcd279",
+            "protocol": "https",
+            "host": [
+              "rahulshettyacademy",
+              "com"
+            ],
+            "path": [
+              "Library",
+              "GetBook.php"
+            ],
+            "query": [
+              {
+                "key": "ID",
+                "value": "bcd279"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "uid": "37340056-010cc421-9a38-4ac8-8a41-4ce3f83910e7"
       }
     ]
   }
