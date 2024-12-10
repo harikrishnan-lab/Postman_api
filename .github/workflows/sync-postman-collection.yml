@@ -31,6 +31,13 @@ jobs:
       - name: Run Postman Collection
         run: newman run collections/BasicCollection.json
 
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-html
+
+      - name: Run Postman Collection
+        run: newman run collection.json -r html
+      
+
       - name: Check for Changes
         id: check_changes
         run: |
