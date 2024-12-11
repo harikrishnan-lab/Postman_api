@@ -57,3 +57,8 @@ jobs:
           git add collections/BasicCollection.json
           git commit -m "Sync updated Postman collection"
           git push origin main
+
+      - name: Clean up untracked files in newman directory
+        run: |
+          git clean -fdX
+
