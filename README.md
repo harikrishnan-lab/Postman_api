@@ -6,6 +6,7 @@ The process involves:
 Fetching Postman collections from the Postman API.
 Using GitHub Actions to automate the synchronization.
 Committing and pushing changes directly to the GitHub repository.
+No Local repo is needed for this
 1. Tools Required
 GitHub Account: A GitHub account with a repository created to host the Postman collections.
 Postman Account: A Postman workspace with a collection you want to sync.
@@ -127,3 +128,68 @@ Verify changes in Postman before triggering the workflow.
 Error: Authentication Failed
 Double-check the API key stored in GitHub Secrets.
 Ensure the repository permissions for the GitHub Actions workflow allow writing to the branch.
+========================================================================================================================================
+Below is the updated workflow to create newman html report and it can be downloaded in result
+name: Sync Postman Collection to GitHub
+
+on:
+  workflow_dispatch:  # Enables manual trigger
+  push:
+    branches:
+      - main  # This can be changed to any branch you use
+#  schedule:
+#    - cron: '0 * * * *'  # Runs every hour (change based on your needs)
+
+jobs:
+  sync-collection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create collections folder (if it doesn’t exist)
+        run: mkdir -p collections
+
+      - name: Fetch and Format Postman Collection from Postman API
+        run: |
+          curl -X GET -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+            https://api.getpostman.com/collections/37340056-abdf1743-bb67-4acd-a85a-c7deac122cf3 \
+            | jq '.' > collections/BasicCollection.json  # Pretty-print JSON
+
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-html
+
+      - name: Run Postman Collection with HTML Report
+        run: newman run collections/BasicCollection.json -r html --reporter-html-export newman/report.html
+
+      - name: Upload Newman Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-report
+          path: newman/report.html
+      
+
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Changes detected."
+            echo "has_changes=true" >> $GITHUB_ENV
+          else
+            echo "No changes detected."
+            echo "has_changes=false" >> $GITHUB_ENV
+          fi
+
+      - name: Commit and Push Updated Collection
+        if: env.has_changes == 'true'
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add collections/BasicCollection.json
+          git commit -m "Sync updated Postman collection"
+          git push origin main
+
+      - name: Clean up untracked files in newman directory
+        run: |
+          git clean -fdX
